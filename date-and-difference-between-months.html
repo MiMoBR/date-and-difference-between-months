@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>Date and Difference between months</title>
+
+		<style type="text/css">
+
+		</style>
+
+	</head>
+	<body>
+		<div>
+			<h1>Date and Difference between months</h1>
+		</div>
+		<br>
+		<div id="dateToday"></div>
+		<br>
+		<div>Compare Date</div>
+		<br>
+		<div id="birth"></div>
+		<div id="exe"></div>
+		<div id="result"></div>
+
+
+
+		<script type="text/javascript">
+			/*Today Date*/
+				var today = new Date();
+				var dayToday = String(today.getDate()).padStart(2, '0');
+				var monthToday = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+				var yearToday = today.getFullYear();
+
+				today = monthToday + '/' + dayToday + '/' + yearToday;
+
+				console.log(today);
+
+				document.getElementById('dateToday').innerHTML = 'Today is '+today;
+			/*Today Date*/
+
+
+			/*Difference Months*/
+				var year = '1981';
+				var month = '12';
+				var day = '15';
+				
+				
+				/*	exemption max months		*/
+				var exemption = '60';
+				
+				
+				/*	Today date		*/
+				var today = new Date();
+				var dayToday = String(today.getDate()).padStart(2, '0');
+				var monthToday = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+				var yearToday = today.getFullYear();
+
+				
+				/*	Function Between Date Plate and exemption	*/
+				var dtPlate = new Date(year,month,day);
+				var dtToday = new Date(yearToday,monthToday,dayToday);
+				
+				function diff_months(dtToday, dtPlate) {
+					var diff =(dtToday.getTime() - dtPlate.getTime()) / 1000;
+
+					diff /= (60 * 60 * 24 * 7 * 4);
+					
+					if(year>0){
+						return Math.abs(Math.round(diff));			
+					}
+				}
+
+				var difMonth = diff_months(dtPlate, dtToday);
+				var difference = Math.abs(difMonth - exemption);
+
+				console.log('Qto resta - da Isenção		'+ difference);	
+
+				document.getElementById('birth').innerHTML = 'My BirthDay '+ day + '/' + month + '/' + year;
+				document.getElementById('exe').innerHTML = 'Exemptions '+exemption + ' months';
+				document.getElementById('result').innerHTML = 'Difference between BirthDay and Exemption '+difference + ' months';
+			/*Difference Months*/	
+
+		</script>
+	</body>
+</html>
